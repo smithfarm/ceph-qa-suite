@@ -52,8 +52,9 @@ tasks:
       create_pool: false
   - ceph_manager.remove_pool:
       args: ['toremove']
-  - sleep:
-      duration: 10
+  - exec:
+      client.0:
+        - rados -p rbd ls -
   - ceph.restart:
       daemons:
         - osd.0
