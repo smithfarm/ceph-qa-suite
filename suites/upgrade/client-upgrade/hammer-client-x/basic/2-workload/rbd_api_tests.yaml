@@ -7,3 +7,15 @@ tasks:
     env:
       RBD_FEATURES: "13"
 - print: "**** done rbd/test_librbd_api.sh"
+
+# Upgraded librbd library should work with older client
+pre_upgrade_workload:
+  sequential:
+  - exec:
+      client.0:
+        - "cp $(which ceph_test_librbd_api) $TESTDIR/ceph_test_librbd_api"
+post_upgrade_workload:
+  sequential:
+  - exec:
+      client.0:
+        - "sudo cp --force $TESTDIR/ceph_test_librbd_api $(which ceph_test_librbd_api)"

@@ -1,10 +1,18 @@
 tasks:
-- install:
-   branch: hammer 
-- print: "**** done install hammer"
-- install.upgrade:
-   exclude_packages: ['ceph-test', 'ceph-test-dbg']
-   client.0:
-- print: "**** done install.upgrade client.0"
-- ceph: 
-- print: "**** done ceph"
+- sequential:
+  - install:
+      branch: hammer 
+  - print: "**** done install hammer"
+  - pre_upgrade_workload
+  - install.upgrade:
+      exclude_packages: ['ceph-test', 'ceph-test-dbg']
+      client.0:
+  - post_upgrade_workload
+  - print: "**** done install.upgrade client.0"
+  - ceph: 
+  - print: "**** done ceph"
+
+pre_upgrade_workload:
+  sequential: []
+post_upgrade_workload:
+  sequential: []
