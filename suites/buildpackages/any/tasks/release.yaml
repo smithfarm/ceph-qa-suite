@@ -2,6 +2,7 @@
 overrides:
    ansible.cephlab:
       repo: https://github.com/smithfarm/ceph-cm-ansible
+      branch: wip-opensuse
 roles:
     - [client.0]
 tasks:
