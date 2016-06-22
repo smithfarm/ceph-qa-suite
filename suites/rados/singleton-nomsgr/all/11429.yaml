@@ -104,6 +104,6 @@ tasks:
       duration: 30
   - radosbench:
       clients: [client.0]
-      time: 30
+      time: 5
       size: 1
   - ceph_manager.wait_for_clean: null
